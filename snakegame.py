@@ -5,9 +5,9 @@ from PIL import Image, ImageTk
 WIDTH = 600
 HEIGHT = 600
 BODYSIZE = 40
-STARTDELAY = 400
+STARTDELAY = 500
 MINDELAY = 100
-STEPDELAY = 20
+STEPDELAY = 10
 LENGTH = 3
 
 count_bodysizeW = WIDTH / BODYSIZE
@@ -17,7 +17,7 @@ y = [0] * int(count_bodysizeH)
 
 
 class Snake(Canvas):
-
+    x, y = False, False
     background_image = False
     background = False
     head_image = False
@@ -46,9 +46,11 @@ class Snake(Canvas):
         self.target = ImageTk.PhotoImage(Image.open("images/target.png").resize((BODYSIZE, BODYSIZE), Image.ANTIALIAS))
 
     def begin_play(self):
-        self.delay = STARTDELAY
         self.direction = "Right"
+        self.delay = STARTDELAY
         self.lose = False
+        self.x = [0] * int(count_bodysizeW)
+        self.y = [0] * int(count_bodysizeH)
         self.delete(ALL)  # отчистка карты
         self.spawn_actors()  # создание игроков
         self.after(self.delay, self.timer)  # создание анимации
@@ -56,17 +58,17 @@ class Snake(Canvas):
     def spawn_actors(self):
         self.spawn_bcgnd()
         self.spawn_target()
-        x[0] = int(count_bodysizeW / 2) * BODYSIZE
-        y[0] = int(count_bodysizeH / 2) * BODYSIZE
+        self.x[0] = int(count_bodysizeW / 2) * BODYSIZE
+        self.y[0] = int(count_bodysizeH / 2) * BODYSIZE
         for i in range(1, LENGTH):
-            x[i] = x[0] - BODYSIZE * i  # создаём голову
-            y[i] = y[0]
-        self.create_image(x[0], y[0], image=self.head, anchor="nw", tag="head")
+            self.x[i] = self.x[0] - BODYSIZE * i  # создаём голову
+            self.y[i] = self.y[0]
+        self.create_image(self.x[0], self.y[0], image=self.head, anchor="nw", tag="head")
         for i in range(LENGTH - 1, 0, -1):
-            self.create_image(x[i], y[i], image=self.body, anchor="nw", tag="body")
+            self.create_image(self.x[i], self.y[i], image=self.body, anchor="nw", tag="body")
 
     def spawn_bcgnd(self):
-        self.create_image(x[0], y[0], image=self.background, anchor="nw", tag="background")
+        self.create_image(self.x[0], self.y[0], image=self.background, anchor="nw", tag="background")
 
     def spawn_target(self):
         target = self.find_withtag("target")
@@ -118,6 +120,11 @@ class Snake(Canvas):
             self.direction_temp = key
         elif key == "Down" and self.direction != "Up":
             self.direction_temp = key
+        elif key == "space" and self.lose:
+            self.direction_temp = "Right"
+            self.begin_play()
+        elif key == "q" and self.lose:
+            exit()
 
     def update_direction(self):
         self.direction = self.direction_temp
@@ -141,6 +148,8 @@ class Snake(Canvas):
             self.update_direction()  # проверка нажатых клавиш
             self.move_snake()  # движение змейки
             self.after(self.delay, self.timer)  # создание анимации
+        else:
+            self.game_over()
 
     def move_snake(self):
         head = self.find_withtag("head")
@@ -159,21 +168,22 @@ class Snake(Canvas):
         elif self.direction == "Down":
             self.move(head, 0, BODYSIZE)
 
+    def game_over(self):
+        body = self.find_withtag("body")
+        self.delete(ALL)
+        self.create_text(self.winfo_width() / 2, self.winfo_height() / 2 - 120, text="Конец игры", font="Tahoma 25", fill="white", tag="text")
+        self.create_text(self.winfo_width() / 2, self.winfo_height() / 2 - 60, text="Длина змейки: " + str(len(body)+1), font="Tahoma 25", fill="white", tag="text")
+        self.create_text(self.winfo_width() / 2, self.winfo_height() / 2, text="Нажмите пробел для новой игры", font="Tahoma 25", fill="white", tag="text")
+        self.create_text(self.winfo_width() / 2, self.winfo_height() / 2 + 120, text="Нажмите q для выхода", font="Tahoma 15", fill="red", tag="text")
+
 
 root = Tk()
 root.title("Змейка")
-
 root.board = Snake()
-
 root.resizable(False, False)
-
-
 scr_width = root.winfo_screenwidth()
 scr_height = root.winfo_screenheight()
-
-x = int(scr_width / 2 - WIDTH / 2)
-y = int(scr_height / 2 - HEIGHT / 2)
-
-root.geometry("+{0}+{1}".format(x, y))
-
+x_root = int(scr_width / 2 - WIDTH / 2)
+y_root = int(scr_height / 2 - HEIGHT / 2)
+root.geometry("+{0}+{1}".format(x_root, y_root))
 root.mainloop()
