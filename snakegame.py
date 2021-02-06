@@ -2,10 +2,12 @@ import random
 from tkinter import *
 from PIL import Image, ImageTk
 
-WIDTH = 800
-HEIGHT = 800
+WIDTH = 600
+HEIGHT = 600
 BODYSIZE = 40
-STARTDELAY = 500
+STARTDELAY = 400
+MINDELAY = 100
+STEPDELAY = 20
 LENGTH = 3
 
 count_bodysizeW = WIDTH / BODYSIZE
@@ -16,6 +18,8 @@ y = [0] * int(count_bodysizeH)
 
 class Snake(Canvas):
 
+    background_image = False
+    background = False
     head_image = False
     head = False
     body = False
@@ -34,9 +38,11 @@ class Snake(Canvas):
         self.pack()
 
     def load_resources(self):
+        self.background_image = Image.open("images/bg.png")
+        self.background = ImageTk.PhotoImage(self.background_image)
         self.head_image = Image.open("images/head.png")
         self.head = ImageTk.PhotoImage(self.head_image.resize((BODYSIZE, BODYSIZE), Image.ANTIALIAS))
-        self.body = ImageTk.PhotoImage(Image.open("images/snake_body.png").resize((BODYSIZE, BODYSIZE), Image.ANTIALIAS))
+        self.body = ImageTk.PhotoImage(Image.open("images/body.png").resize((BODYSIZE, BODYSIZE), Image.ANTIALIAS))
         self.target = ImageTk.PhotoImage(Image.open("images/target.png").resize((BODYSIZE, BODYSIZE), Image.ANTIALIAS))
 
     def begin_play(self):
@@ -48,7 +54,8 @@ class Snake(Canvas):
         self.after(self.delay, self.timer)  # создание анимации
 
     def spawn_actors(self):
-        self.spawn_apple()
+        self.spawn_bcgnd()
+        self.spawn_target()
         x[0] = int(count_bodysizeW / 2) * BODYSIZE
         y[0] = int(count_bodysizeH / 2) * BODYSIZE
         for i in range(1, LENGTH):
@@ -58,13 +65,48 @@ class Snake(Canvas):
         for i in range(LENGTH - 1, 0, -1):
             self.create_image(x[i], y[i], image=self.body, anchor="nw", tag="body")
 
-    def spawn_apple(self):
+    def spawn_bcgnd(self):
+        self.create_image(x[0], y[0], image=self.background, anchor="nw", tag="background")
+
+    def spawn_target(self):
         target = self.find_withtag("target")
         if target:
             self.delete(target[0])
         rx = random.randint(0, count_bodysizeW - 1)  # -1 чтобы мишень не оказалась за экраном
         ry = random.randint(0, count_bodysizeH - 1)  # -1 чтобы мишень не оказалась за экраном
         self.create_image(rx * BODYSIZE, ry * BODYSIZE, anchor="nw", image=self.target, tag="target")
+
+    def check_target(self):
+        target = self.find_withtag("target")[0]
+        head = self.find_withtag("head")
+        body = self.find_withtag("body")[-1]
+        x1, y1, x2, y2 = self.bbox(head)  # программа находит координаты прямоугольника головы
+        overlaps = self.find_overlapping(x1, y1, x2, y2)  # метод поиска пересечений объектов
+        for actor in overlaps:
+            if actor == target:
+                temp_x, temp_y = self.coords(body)  # сохраняем текущие координаты
+                self.spawn_target()  # создаем новую цель
+                self.create_image(temp_x, temp_y, image=self.body, anchor="nw", tag="body")  # новый хвост
+                if self.delay > MINDELAY:  # увеличиваем скорость (уменьшаем задержку)
+                    self.delay -= STEPDELAY
+
+    def check_collisions(self):
+        head = self.find_withtag("head")
+        body = self.find_withtag("body")
+        x1, y1, x2, y2 = self.bbox(head)
+        overlaps = self.find_overlapping(x1, y1, x2, y2)
+        for b in body:
+            for actor in overlaps:
+                if actor == b:
+                    self.lose = True  # проверяем не столкнулась ли змейка сама с собой
+        params = [
+            x1 < 0,
+            x2 > WIDTH,
+            y1 < 0,
+            y2 > HEIGHT
+        ]  # проверка на выход за пределы экрана
+        if any(params):
+            self.lose = True
 
     def on_key_pressed(self, event):
         key = event.keysym
@@ -93,7 +135,9 @@ class Snake(Canvas):
         self.create_image(headx, heady, image=self.head, anchor="nw", tag="head")
 
     def timer(self):
+        self.check_collisions()
         if not self.lose:
+            self.check_target()
             self.update_direction()  # проверка нажатых клавиш
             self.move_snake()  # движение змейки
             self.after(self.delay, self.timer)  # создание анимации
