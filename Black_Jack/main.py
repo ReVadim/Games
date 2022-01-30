@@ -11,12 +11,19 @@ def main():
         if money <= 0:
             print(LOOSE)
             sys.exit()
+        elif 3000 > money > 2000:
+            print('WOW! Yuo won {}$!'.format(money - 1000))
+        elif money >= 3000:
+            print('Unbelievably! Yuo won {}$!'.format(money - 1000))
 
         print('Money: ', money)
         bet = service.get_bet(money)
         deck = service.get_deck()
         dealer_hand = [deck.pop(), deck.pop()]
         player_hand = [deck.pop(), deck.pop()]
+        if ('J', '♠') in player_hand and ('A', '♠') in player_hand:
+            print('BLACK JACK!!!')
+            bet = bet + 10
         print('Bet: ', bet)
 
         while True:
@@ -34,7 +41,7 @@ def main():
                 print('Bet increased to {}.'.format(bet))
                 print('Bet: ', bet)
 
-            if move == 'H':
+            if move in ('H', 'D'):
                 new_card = deck.pop()
                 rank, suit = new_card
                 print('You drew a {} of {}.'.format(rank, suit))

@@ -90,7 +90,6 @@ def display_cards(cards: list) -> None:
     """
     rows = ['', '', '', '']
 
-    # for i, card in enumerate(cards):
     for card in cards:
         rows[0] += ' ___  '
         if card == BACKSIDE:
