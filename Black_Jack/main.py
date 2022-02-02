@@ -23,7 +23,7 @@ def main():
         player_hand = [deck.pop(), deck.pop()]
         if ('J', '♠') in player_hand and ('A', '♠') in player_hand:
             print('BLACK JACK!!!')
-            bet = bet + 10
+            bet = bet * 10
         print('Bet: ', bet)
 
         while True:
