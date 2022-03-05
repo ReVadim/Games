@@ -1,5 +1,5 @@
 import sys
-from . import settings
+import settings
 
 
 def get_new_board():
@@ -62,4 +62,42 @@ def is_full(board: dict) -> bool:
 
 
 def is_winner(player_tile, board):
-    pass
+    """ Check 4 in a row. Return bool """
+    # check all board
+    for column_index in range(settings.BOARD_WIDTH - 3):
+        for row_index in range(settings.BOARD_HEIGHT):
+            # find 4 in horizontal
+            tile1 = board[(column_index, row_index)]
+            tile2 = board[(column_index + 1, row_index)]
+            tile3 = board[(column_index + 2, row_index)]
+            tile4 = board[(column_index + 3, row_index)]
+            if tile1 == tile2 == tile3 == tile4 == player_tile:
+                return True
+
+    for column_index in range(settings.BOARD_WIDTH):
+        for row_index in range(settings.BOARD_HEIGHT - 3):
+            # find 4 in vertical
+            tile1 = board[(column_index, row_index)]
+            tile2 = board[(column_index, row_index + 1)]
+            tile3 = board[(column_index, row_index + 2)]
+            tile4 = board[(column_index, row_index + 3)]
+            if tile1 == tile2 == tile3 == tile4 == player_tile:
+                return True
+
+    for column_index in range(settings.BOARD_WIDTH - 3):
+        for row_index in range(settings.BOARD_HEIGHT - 3):
+            # find 4 in diagonal
+            tile1 = board[(column_index, row_index)]
+            tile2 = board[(column_index + 1, row_index + 1)]
+            tile3 = board[(column_index + 2, row_index + 2)]
+            tile4 = board[(column_index + 3, row_index + 3)]
+            if tile1 == tile2 == tile3 == tile4 == player_tile:
+                return True
+
+            tile1 = board[(column_index + 3, row_index)]
+            tile2 = board[(column_index + 2, row_index + 1)]
+            tile3 = board[(column_index + 1, row_index + 2)]
+            tile4 = board[(column_index, row_index + 3)]
+            if tile1 == tile2 == tile3 == tile4 == player_tile:
+                return True
+    return False
