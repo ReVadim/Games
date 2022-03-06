@@ -58,11 +58,11 @@ class SudokuGrid:
     def display(self):
         """ Displaying the current state of the field on the screen """
 
-        print('  A B C   D E F   G H I  ')
+        print('    A B C   D E F   G H I  ')
         for y in range(GRID_LENGTH):
             for x in range(GRID_LENGTH):
                 if x == 0:
-                    print(str(y + 1) + ' ', end='')
+                    print(str(y + 1) + '|  ', end='')
 
                 print(self.grid[(x, y)] + ' ', end='')
                 if x == 2 or x == 5:
@@ -70,7 +70,7 @@ class SudokuGrid:
             print()
 
             if y == 2 or y == 5:
-                print('  ------+-------+------')
+                print('    ------+-------+------')
 
     @staticmethod
     def _is_complete_set_of_numbers(numbers):
