@@ -1,6 +1,7 @@
 import sys
 import random
 from game_settings import CARDS, BACKSIDE
+import art
 
 
 def get_bet(max_bet: int) -> int:
@@ -13,7 +14,7 @@ def get_bet(max_bet: int) -> int:
         print('How much do you bet? (1-{}, or (Q)UIT)'.format(max_bet))
         bet = input('> ').upper().strip()
         if bet == 'Q':
-            print('Thanks for playing!')
+            print(art.text2art('Thanks for playing!'))
             sys.exit()
         if not bet.isdecimal():
             continue

@@ -1,6 +1,7 @@
 import sys
 import service
 from game_settings import RULES, MONEY, LOOSE
+import art
 
 
 def main():
@@ -22,7 +23,7 @@ def main():
         dealer_hand = [deck.pop(), deck.pop()]
         player_hand = [deck.pop(), deck.pop()]
         if ('J', '♠') in player_hand and ('A', '♠') in player_hand:
-            print('BLACK JACK!!!')
+            print(art.text2art('BLACK JACK!!!'))
             bet = bet * 10
         print('Bet: ', bet)
 
@@ -72,7 +73,7 @@ def main():
             print('Dealer busts! You win ${}!'.format(bet))
             money += bet
         elif (player_value > 21) or (player_value < dealer_value):
-            print('You lost!')
+            print(art.text2art('You lost!'))
             money -= bet
         elif player_value > dealer_value:
             print('You won ${}!'.format(bet))
