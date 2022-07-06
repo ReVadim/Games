@@ -1,5 +1,5 @@
 import sys
-import settings
+from Four_In_Arow import settings
 
 
 def get_new_board():

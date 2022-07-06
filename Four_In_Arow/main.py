@@ -1,7 +1,7 @@
 import sys
 
-import service
-import settings
+from Four_In_Arow import service
+from Four_In_Arow import settings
 
 
 assert len(settings.COLUMN_LABELS) == settings.BOARD_WIDTH
