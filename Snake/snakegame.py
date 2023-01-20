@@ -181,8 +181,14 @@ root = Tk()
 root.title("Змейка")
 root.board = Snake()
 root.resizable(False, False)
-scr_width = root.winfo_screenwidth()
-scr_height = root.winfo_screenheight()
+try:
+	scr_width = root.winfo_screenwidth()
+except:
+	scr_width = 1980
+try:
+	scr_height = root.winfo_screenheight()
+except:
+	scr_height = 960
 x_root = int(scr_width / 2 - WIDTH / 2)
 y_root = int(scr_height / 2 - HEIGHT / 2)
 root.geometry("+{0}+{1}".format(x_root, y_root))
