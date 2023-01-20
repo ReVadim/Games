@@ -6,7 +6,7 @@ Simple console games and browser games with JavaScript
 
 For example:    
 
-[Click to play Snake game](https://github.com/ReVadim/Games/Snake_JS)
+[Click to play Snake game](https://revadim.github.io/Games/Snake_JS)
 
 (Sudoku)    
 <img src="https://github.com/ReVadim/Games/blob/main/sudoku/printscreen/move.png" alt="sudoku">    
