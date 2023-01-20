@@ -1,0 +1,12 @@
+canvas {
+	display: block;
+	margin: 0 auto;
+}
+.line {
+	width: 608px;
+	height: 5px;
+	background-color: white;
+	position: fixed;
+    left: 464px; 
+    top: 68px; 
+}
