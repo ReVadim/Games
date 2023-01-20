@@ -2,11 +2,17 @@ canvas {
 	display: block;
 	margin: 0 auto;
 }
+
 .line {
 	width: 608px;
 	height: 5px;
-	background-color: white;
+	background-color: skyblue;
 	position: fixed;
     left: 464px; 
     top: 68px; 
+}
+#back {
+	position: fixed;
+	left: 300px;
+	top: 40px;
 }
