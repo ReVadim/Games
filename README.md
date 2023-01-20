@@ -2,13 +2,15 @@
 Classic games.    
 Created for the purpose of training.    
 
-Simple console games and using the TKinter module    
+Simple console games and browser games with JavaScript
 
 For example:    
-(Sudoku)
 
-![](https://github.com/ReVadim/Games/blob/main/sudoku/printscreen/move.png)    
+[Click to play Snake game](https://github.com/ReVadim/Games/Snake_JS)
+
+(Sudoku)    
+<img src="https://github.com/ReVadim/Games/blob/main/sudoku/printscreen/move.png" alt="sudoku">    
 
 (Black Jack)    
-
-![](https://github.com/ReVadim/Games/blob/main/Black_Jack/printscreen/win.png)    
+<img src="https://github.com/ReVadim/Games/blob/main/Black_Jack/printscreen/win.png" alt="Black_Jack">    
+ 
