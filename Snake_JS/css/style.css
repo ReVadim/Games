@@ -3,7 +3,8 @@ canvas {
 	margin: 0 auto;
 }
 
-.container .link {
 
-    position: absolute;
+#back {
+	display: block;
+	text-align: center;
 }
