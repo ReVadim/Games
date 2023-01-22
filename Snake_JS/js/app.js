@@ -7,7 +7,6 @@ ground.src = "img/green_squares.webp";
 
 const foodImg = new Image();
 
-
 let rand_food = Math.round(Math.random() * 4)
 images = new Array();
 images[0]="img/1.png"
@@ -53,9 +52,15 @@ function eatTail(head, body) {
 			clearInterval(game);
 	}
 }
-
+/*var ctx = c.getContext("2d");
+ctx.moveTo(0, 0);
+ctx.lineTo(200, 100);
+ctx.stroke();*/
 function drawGame() {
 	ctx.drawImage(ground, 0, 0);
+	ctx.moveTo(0,65);
+	ctx.lineTo(608, 65);
+	ctx.stroke();
 	ctx.drawImage(foodImg, food.x, food.y);
 	for(let i = 0; i < snake.length; i++) {
 		ctx.fillStyle = i == 0 ? "navy" : "blue";

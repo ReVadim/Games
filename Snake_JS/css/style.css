@@ -3,16 +3,7 @@ canvas {
 	margin: 0 auto;
 }
 
-.line {
-	width: 608px;
-	height: 5px;
-	background-color: skyblue;
-	position: fixed;
-    left: 464px; 
-    top: 68px; 
-}
-#back {
-	position: fixed;
-	left: 300px;
-	top: 40px;
+.container .link {
+
+    position: absolute;
 }
