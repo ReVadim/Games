@@ -3,7 +3,7 @@ const ctx = canvas.getContext("2d");
 
 // screen 608x608
 const ground = new Image();
-ground.src = "img/snake.png";
+ground.src = "img/green_squares.webp";
 
 const foodImg = new Image();
 
@@ -21,7 +21,7 @@ foodImg.src = images[rand_food];
 let box = 32;
 let score = 0;
 let food = {
-	x: Math.floor((Math.random() * 15 + 2)) * box,
+	x: Math.floor((Math.random() * 17 + 1)) * box,
 	y: Math.floor((Math.random() * 14 + 2)) * box,
 };
 
@@ -52,6 +52,10 @@ function eatTail(head, body) {
 			clearInterval(game);
 	}
 }
+/*var ctx = c.getContext("2d");
+ctx.moveTo(0, 0);
+ctx.lineTo(200, 100);
+ctx.stroke();*/
 function drawGame() {
 	ctx.drawImage(ground, 0, 0);
 	ctx.moveTo(0,65);
@@ -73,15 +77,15 @@ function drawGame() {
 	if(snakeX == food.x && snakeY == food.y) {
 		score++;
 		food = {
-			x: Math.floor((Math.random() * 16 + 3)) * box,
-			y: Math.floor((Math.random() * 13 + 2)) * box,
+			x: Math.floor((Math.random() * 17 + 1)) * box,
+			y: Math.floor((Math.random() * 14 + 2)) * box,
 		};
 	} else {
 		snake.pop();
 	}
 
 	// board frame
-	if(snakeX < box * 2 || snakeX > box * 16 || snakeY < 4 * box || snakeY > box * 16)
+	if(snakeX < box || snakeX > box * 17 || snakeY < 2 * box || snakeY > box * 18)
 		clearInterval(game);
 
 	if(dir == "left") snakeX -= box;
