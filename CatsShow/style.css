@@ -12,45 +12,44 @@ body {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-    height: 80vh;
-    overflow: hidden;
-    margin: 0;
-    padding: 20px;
+        height: 100vh;
+        overflow: hidden;
+        margin: 0;
 }
 
 .container {
+
+	position: relative;
 	background-color: #fff;
 	border-radius: 15px;
 	box-shadow: 0 10px 20px rgba(0,0,0,0.1), 0 6px 6px rgba(0,0,0,0.1);
 	padding: 40px 20px;
 	text-align: center;
-	width: 1200px;
-	height: 900px;
+	height: 80%;
+}
+
+.container h1 {
+	margin-top: 0;
 }
 
 .image {
-	max-width: 90vw;
-	max-height: 700px;
+	position: inherit;
+	width: 80vw;
+	height: 80%;
 	overflow: hidden;
-}
-
-img {
-	max-width: inherit;
-	max-height: inherit;
-	min-width: 800px;
+	margin-bottom: 20px
 }
 
 .container img {
+	object-fit: cover;
 	position: relative;
-	max-width: 80%;
+	max-width: 80vw;
 	max-height: 80vh;
 	overflow: hidden;
 }
 
 .container .btn {
-	position: fixed;
-	top: 85%;
-	left: 48%;
+	vertical-align: bottom;
 	background-color: #9F68E0;
 	color: #fff;
 	border: 0;
