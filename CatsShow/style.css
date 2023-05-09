@@ -15,7 +15,6 @@
 }
 
 body {
-<<<<<<< HEAD
 	font-family: 'Roboto', sans-serif;
     height: 100vh;
     overflow: hidden;
@@ -200,53 +199,6 @@ for ghost level
 .newBtn {
 	vertical-align: bottom;
 	background-color: var(--right-btn-hover-color);
-=======
-	background-color: #686de0;
-	font-family: 'Muli', sans-serif;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-        height: 100vh;
-        overflow: hidden;
-        margin: 0;
-}
-
-.container {
-
-	position: relative;
-	background-color: #fff;
-	border-radius: 15px;
-	box-shadow: 0 10px 20px rgba(0,0,0,0.1), 0 6px 6px rgba(0,0,0,0.1);
-	padding: 40px 20px;
-	text-align: center;
-	height: 80%;
-}
-
-.container h1 {
-	margin-top: 0;
-}
-
-.image {
-	position: inherit;
-	width: 80vw;
-	height: 80%;
-	overflow: hidden;
-	margin-bottom: 20px
-}
-
-.container img {
-	object-fit: cover;
-	position: relative;
-	max-width: 80vw;
-	max-height: 80vh;
-	overflow: hidden;
-}
-
-.container .btn {
-	vertical-align: bottom;
-	background-color: #9F68E0;
->>>>>>> cc909f3929ba861cccac886ba6a0f3480edb60aa
 	color: #fff;
 	border: 0;
 	border-radius: 10px;
@@ -265,6 +217,7 @@ for ghost level
 
 .showCatImage,
 .showDogImage {
+/*	background-color: lightblue;*/
 	position: absolute;
 	left: 0;
 	right: 0;
