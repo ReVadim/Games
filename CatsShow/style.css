@@ -1,70 +1,275 @@
-@import url('https://fonts.googleapis.com/css?family=Muli&display=swap')
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap')
 
 * {
 	box-sizing: border-box;
-	max-width: 100%;
+}
+
+:root {
+	--left-bg-color: rgba(87, 84, 236, 0.7);
+	--right-bg-color: rgba(43, 43, 43, 0.8);
+	--left-btn-hover-color: rgba(87, 84, 236, 1);
+	--right-btn-hover-color: rgba(235, 155, 52, 1);
+	--hover-width: 75%;
+	--other-width: 25%;
+	--speed: 1000ms;
 }
 
 body {
-	background-color: #686de0;
-	font-family: 'Muli', sans-serif;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-    height: 80vh;
+	font-family: 'Roboto', sans-serif;
+    height: 100vh;
     overflow: hidden;
     margin: 0;
-    padding: 20px;
+}
+
+h1 {
+	font-size: 2 rem;
+	width: 550px;
+	color: #fff;
+	position: absolute;
+	left: 50%;
+	top: 20%;
+	transform: translateX(-50%);
+}
+
+.btn {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center; 
+	left: 50%;
+	top: 50%;
+	transform: translateX(-50%);
+	text-decoration: none;
+	color: #fff;
+	border: #fff solid 0.2rem;
+	font-size: 1rem;
+	font-weight: bold; 
+	text-transform: uppercase;
+	width: 15rem;
+	padding: 1.5rem;
+}
+
+.split.left .btn:hover {
+	background-color: var(--left-btn-hover-color);
+	border-color: var(--left-btn-hover-color);
+}
+
+.split.right .btn:hover {
+	background-color: var(--right-btn-hover-color);
+	border-color: var(--right-btn-hover-color);
+}
+
+.split.right,
+.split.left,
+.split.right::before,
+.split.left::before {
+	transition: all var(--speed) ease; 
 }
 
 .container {
-	background-color: #fff;
-	border-radius: 15px;
-	box-shadow: 0 10px 20px rgba(0,0,0,0.1), 0 6px 6px rgba(0,0,0,0.1);
-	padding: 40px 20px;
-	text-align: center;
-	width: 1200px;
-	height: 900px;
-}
-
-.image {
-	max-width: 90vw;
-	max-height: 700px;
-	overflow: hidden;
-}
-
-img {
-	max-width: inherit;
-	max-height: inherit;
-	min-width: 800px;
-}
-
-.container img {
 	position: relative;
-	max-width: 80%;
-	max-height: 80vh;
+	width: 100%;
+	height: 100%;
+}
+
+.split {
+	position: absolute;
+	width: 50%;
+	height: 100%;
 	overflow: hidden;
 }
 
-.container .btn {
-	position: fixed;
-	top: 85%;
-	left: 48%;
-	background-color: #9F68E0;
+.split.left {
+	left: 0;
+	background: url('img/cat.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+for ghost level
+.split.left::before {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: var(--left-bg-color, rgba(43, 43, 43, 0.8)); /*custom variable*/
+}
+
+.split.right {
+	right: 0;
+	background: url('img/jack-russel.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;	
+}
+
+.split.right::before {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: var(--right-bg-color, rgba(87, 84, 236, 0.7)); /*custom variable*/
+}
+
+.hover-left .left {
+	width: var(--hover-width);
+	--left-bg-color: none;
+}
+
+.hover-left .right {
+	width: var(--other-width);
+}
+
+.hover-right .right {
+	width: var(--hover-width);
+	--right-bg-color: none;
+}
+
+.hover-right .leftt {
+	width: var(--other-width);
+}
+
+@media(max-width: 800px) {
+	h1 {
+		font-size: 2rem;
+		top: 30%;
+	}
+
+	.btn {
+		padding: 1.2rem;
+		width: 12rem;
+	}
+}
+
+.up {
+	margin-top: -100vh;
+}
+
+.cats-world {
+	background-color: var(--left-btn-hover-color);
+	position: absolute;
+	width: 100%;
+	height: 100%;
+
+}
+
+.homepage {
+	position: absolute;
+	right: 30px;
+	bottom: 30px;
+}
+
+.homepage:hover,
+.backBtn:hover,
+.newBtn:hover,
+.likeBtn:hover {
+	scale: 1.1;
+}
+
+.dogs-world {
+	background-color: var(--right-btn-hover-color);
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.image-container {
+	position: absolute;
+	text-align: center;
+	width: 90%;
+	height: 80%;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	background-color: #fff;
+}
+
+.buttons {
+	position: absolute;
+	width: 100%;
+	height: 15%;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+
+.backBtn,
+.newBtn {
+	vertical-align: bottom;
+	background-color: var(--right-btn-hover-color);
 	color: #fff;
 	border: 0;
 	border-radius: 10px;
 	box-shadow: 0 5px 15px rgba(0,0,0,0.1), 0 6px 6px rgba(0,0,0,0.1);
-	padding: 14px 40px;
+	padding: 20px 50px;
 	font-size: 16px;
-	cursor: pointer; 
+	cursor: pointer;
+	margin: 0 50px 0 50px;
 }
 
-.btn:active {
-	transform: scale(0.92);
+.doglikeBtn,
+.catlikeBtn {
+	margin: 0 60px 0 60px;
+	cursor: pointer;
 }
 
-.btn:focus {
-	outline: 0; 
+.showCatImage,
+.showDogImage {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 60px;
+	margin: auto;
+	width: 80vw;
+	height: 70%;
+	overflow: hidden;
+}
+
+.showCatImage img,
+.showDogImage img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	object-fit: cover;
+	min-width: auto;
+	min-height: 50vh;
+	max-height: 90vh;
+}
+
+.hidden {
+	display: none;
+}
+
+.liked {
+	position: absolute;
+	animation: grow 0.6s linear;
+	transform: translate(-50%, -50%) scale(0);
+}
+
+@keyframes grow {
+	to {
+		transform: translate(-50%, -50%) scale(10);
+		opacity: 0;
+	}
+}
+
+.photoStock {
+	position: absolute;
+	left: 20px;
+	z-index: 20;
+	top: 20px;
+}
+
+.photoStock img:hover {
+	scale: 1.2;
+}
+
+.photoStock img:active {
+	animation: grow 0.3s linear;
 }

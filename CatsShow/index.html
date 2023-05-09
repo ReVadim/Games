@@ -4,15 +4,52 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="style.css">
-	<title>CatsShow</title>
+	<title>Cat or dog</title>
 </head>
 <body>
+	<div class="photoStock hidden"><a href="galery.html" target="_blank"><img id="photoStock" src="./img/galery.png" alt="photoStock"></a></div>
 	<div class="container">
-		<H1>CatsShow</H1>
-		<div class="image" id="image">
-			
+		<div class="split left">
+			<h1>Кошки не знают, что такое бессоница.<br>
+			Если вам надоело быть хозяином у себя дома, заведите кота.</h1>
+			<a class="btn cat">Кошечки</a>
 		</div>
-		<button class="btn" id="cat-button">New Cat</button>
+		<div class="split right">
+			<h1>Собака – это необычное создание, она не пристает с расспросами, ей все равно, богат ты или беден, грешник или святой. Ты друг. Ей этого достаточно.</h1>
+			<a class="btn dog">Собачки</a>
+		</div>		
+	</div>
+
+	<div class="cats-world">
+	    <div class="image-container">
+	    	<div class="showCatImage">
+	    		<img src="" id="lastCat" class="lastCat hidden">
+	    		<img src="./img/cat.jpg" alt="cat" id="cat-show">
+	    	</div>
+
+	        <div class="buttons">
+	        	<button id="catBackBtn" class="backBtn hidden">Назад</button>
+	        	<button id="showCatBtn" class="newBtn">Вперед</button>
+	        	<img id="catlikeBtn" class="catlikeBtn hidden" src="./img/heart.png">
+	        </div>
+	    </div>
+	        <img class="homepage" src="./img/home.png" alt="homepage">
+	</div>
+
+	<div class="dogs-world">
+		<div class="image-container">
+			<div class="showDogImage">
+				<img src="" id="lastDog" class="lastDog hidden">
+				<img src="./img/jack-russel.jpg" alt="dog" id="dog-show">
+			</div>
+
+			<div class="buttons">
+	        	<button id="dogBackBtn" class="backBtn hidden">Назад</button>
+	        	<button id="showDogBtn" class="newBtn">Вперед</button>
+	        	<img id="dogLikeBtn" class="doglikeBtn hidden" src="./img/heart.png">
+	        </div>
+		</div>
+		<img class="homepage" src="./img/home.png" alt="homepage">
 	</div>
 
 	<script src="script.js"></script>
