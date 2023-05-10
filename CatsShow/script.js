@@ -176,8 +176,7 @@ function getPhotoAlbum() {
 
 function checkLikedImages() {
 	const likedImages = localStorage.getItem(LIKED_IMAGES_LS);
-	if(likedImages !== null) {
-		getPhotoAlbum();
+	if(likedImages !== null && likedImages.length > 0) {
 		showPhotoStockBtn.classList.remove('hidden');
 	} else {
 		showPhotoStockBtn.classList.add('hidden');

@@ -47,20 +47,21 @@ function removeImage(imgClassName) {
    const img = document.getElementsByClassName(imgClassName)
    const img_cls = img[0].classList.value
    document.querySelector('.' + img_cls).remove()
+   document.getElementById(imgClassName).remove()
    refreshLocalStorage();
 }
 
 function refreshLocalStorage() {
+   storageList.length = 0
+   localStorage.setItem(LIKED_IMAGES_LS, '');
    const allImages = document.querySelectorAll('img')
          allImages.forEach(img => {
-            console.log(img.alt)
             updateLS(img.alt)
          })
 }
 
 function saveLikeInLS() {
    data = JSON.stringify(storageList)
-   localStorage.setItem(LIKED_IMAGES_LS, '');
    localStorage.setItem(LIKED_IMAGES_LS, data);
 }
 
