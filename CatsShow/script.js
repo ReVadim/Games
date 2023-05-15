@@ -61,7 +61,6 @@ homePage.forEach(btn => {
 	})
 })
 
-
 async function catShow() {
 
 	if(showCatImage !== null) {
@@ -167,6 +166,7 @@ dogLikeBtn.addEventListener('click', () => {
 function getPhotoAlbum() {
 	const likedImages = localStorage.getItem(LIKED_IMAGES_LS);
 	if (likedImages !== null) {
+		likedList.length = 0
 		const parseImages = JSON.parse(likedImages)
 		parseImages.forEach(image => {
 			likedList.push(image);
@@ -175,6 +175,7 @@ function getPhotoAlbum() {
 }
 
 function checkLikedImages() {
+	likedList.length = 0
 	const likedImages = localStorage.getItem(LIKED_IMAGES_LS);
 	if(likedImages !== null && likedImages.length > 0) {
 		showPhotoStockBtn.classList.remove('hidden');

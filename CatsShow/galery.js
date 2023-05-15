@@ -1,8 +1,4 @@
-
 const base = document.querySelector('.base')
-const backBtn = document.getElementById('backBtn')
-const forwardBtn = document.getElementById('backBtn')
-const closeBtn = document.getElementById('closeBtn')
 const pictures = document.querySelector('.pictures')
 const LIKED_IMAGES_LS = 'liked'
 const storageList = []
@@ -10,7 +6,7 @@ const storageList = []
 
 function showImages() {
    const images = localStorage.getItem(LIKED_IMAGES_LS)
-   if (images !== null) {
+   if (images !== null && images.length > 0) {
       const imagesList = JSON.parse(images)
       imagesList.forEach(img => {
          createImg(img);
@@ -56,6 +52,7 @@ function refreshLocalStorage() {
    localStorage.setItem(LIKED_IMAGES_LS, '');
    const allImages = document.querySelectorAll('img')
          allImages.forEach(img => {
+            console.log(img.alt)
             updateLS(img.alt)
          })
 }
