@@ -273,3 +273,21 @@ for ghost level
 .photoStock img:active {
 	animation: grow 0.3s linear;
 }
+
+@media (max-width: 435px) {
+	h1 {display: none;}
+	#cat-show, #dog-show {max-width: 435px;}
+	#catBackBtn, #showCatBtn, #dogBackBtn, #showDogBtn {
+		margin: 3px;
+		padding: 10px 20px;
+	}
+	.doglikeBtn,
+	.catlikeBtn {
+		width: 40px;
+		height: 40px;
+		margin: 0 10px 0 10px;
+	}
+	.showCatImage img, .showDogImage img {
+		max-width: 80vw;
+	}
+}
